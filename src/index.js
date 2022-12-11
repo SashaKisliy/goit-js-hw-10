@@ -16,7 +16,7 @@ searchCountryInput.addEventListener('input', debounce(takeSearhсParam, DEBOUNCE
 function takeSearhсParam(e) {
     let orderCountry = e.target.value.trim();
     if (orderCountry === '') {
-        countryList.innerHTML = '';
+        clearCountryContainer();
         return;
     }
 
