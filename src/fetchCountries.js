@@ -1,17 +1,6 @@
 import axios from "axios";
-export 
-
-function fetchCountries(name) {
-    axios.get(`https://restcountries.com/v3.1/name/${name}`)
-    .then(function (response) {
-        // handle success
-        console.log(response);
-    })
-    .catch(function (error) {
-        // handle error
-        console.log(error);
-    })
-    .finally(function () {
-        // always executed
-    });
+export function fetchCountries(name) {
+    return axios.get(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`)
+    .then(res => {
+        return res.data})
 };

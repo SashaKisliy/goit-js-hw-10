@@ -1,5 +1,5 @@
 import './css/styles.css';
-import './fetchCountries.js'
+import { fetchCountries } from './fetchCountries'
 import debounce from 'lodash.debounce';
 import axios from 'axios';
 import Notiflix, { Notify } from 'notiflix';
@@ -20,14 +20,8 @@ function takeSearhсParam(e) {
         return;
     }
 
-    fetchCountries(orderCountry).then(createCountryList)
+    fetchCountries(orderCountry).then(createCountryList).catch(notFound)
 }
-
-function fetchCountries(name) {
-    return axios.get(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`)
-    .then(res => {
-        return res.data}).catch(notFound);
-};
 
 
 function createCountryList(countries) {
@@ -68,7 +62,6 @@ function createCountryList(countries) {
                 })
             };
 
- q  
         function notFound () {
             Notify.failure('Oops, there is no country with that name', {
                 width: '500px',
